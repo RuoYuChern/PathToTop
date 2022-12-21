@@ -104,6 +104,17 @@ static irqreturn_t intr_handler(int irq, void* dev_id, struct pt_regs* regs);
 那么操作系统如何处理中断，即中断路由：
 
 ```mermaid
+sequenceDiagram
+    硬件->>中断控制器: 中断信号
+    中断控制器->>处理器: 中断
+    处理器->>内核: 中断
+    内核->>内核: do_IRQ()
+    alt 有中断例程
+    内核->>内核: dhandle_IRQ_event()
+    内核->>内核: 执行中断例程
+    else
+    内核->>内核: 返回执行中断的代码
+    end
 ```
 
 ## 1.2 操作系统
