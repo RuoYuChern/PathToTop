@@ -171,3 +171,7 @@ sequenceDiagram
 
 ### 1.2.2 操作系统设计层次
 
+不管什么样的操作系统，比如Linux、UNIX、Windows、Solar操作系统，从功能上来看，都有如图的功能架构：
+
+<figure><img src="../.gitbook/assets/gongneng_jiagou.png" alt=""><figcaption><p>图七 操作功能架构</p></figcaption></figure>
+
