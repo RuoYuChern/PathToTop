@@ -117,6 +117,22 @@ sequenceDiagram
     end
 ```
 
+### 1.1.4 存储器
+
+计算机的存储器是用来存储数据的，存储器的设计目标可以归纳为3个关键问题：
+
+1. 容量多大？
+2. 速度多快？
+3. 价格多贵？
+
+这是一个三角约关系：
+
+<figure><img src="../.gitbook/assets/cunchu_sjyx.png" alt=""><figcaption><p>图四 存储器三角约束</p></figcaption></figure>
+
+解决这个三角约束问题的方法：分层思想——层次化存储。
+
+<figure><img src="../.gitbook/assets/cunchu_fenceng.png" alt=""><figcaption><p>图五 分层存储</p></figcaption></figure>
+
 ## 1.2 操作系统
 
 前面简单介绍了计算机组成部分，并通过例子执行 3 + 5 的计算指令，描述了一个完整的指令周期。
