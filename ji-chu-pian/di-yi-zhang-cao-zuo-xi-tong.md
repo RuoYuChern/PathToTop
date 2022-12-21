@@ -77,7 +77,34 @@ CPU的关键组成及其作用：
 
 <figure><img src="../.gitbook/assets/yingjian_zhongduan.png" alt=""><figcaption><p>图三：中断分类</p></figcaption></figure>
 
-从物理学的角度看，中断是一种电信号，不同的设备对应的中断不同，而每个中断都通过一个惟一的数字标识（中断值）。这些中断值在Linux 系统中被称为中断请求（IRQ）线。对于连接在PCI总线上的设备而言，中断是动态分配的，但是无论如何都要保证特定的中断总是与特定的设备相关联，并且操作系统内核知道这些信息。既然有中断、中断值（IRQ），那么就有中断处理程序。
+从物理学的角度看，中断是一种电信号，不同的设备对应的中断不同，而每个中断都通过一个惟一的数字标识（中断值）。这些中断值在Linux 系统中被称为中断请求（IRQ）线。对于连接在PCI总线上的设备而言，中断是动态分配的，但是无论如何都要保证特定的中断总是与特定的设备相关联，并且操作系统内核知道这些信息。既然有中断、中断值（IRQ），那么就有中断处理程序（中断服务例程 ISR），其本质是一个函数，通过调用类似如下的函数，注册中断处理程序，让内核知道IRQ与ISR的关联信息。
+
+```clike
+// Some code
+/**
+* irq: 中断号
+* handler：ISR 函数指针。
+* irqflags：可以为0，是一个掩码
+* devname：设备名称
+* dev_id：共享中断线。 
+*/
+int request_irq(unsigned int irq,
+                irqreturn_t (*handler)(int, void*, struct pt_regs*),
+                unsigned long irqflags,
+                const char * devname,
+                void *dev_id);
+/**
+* irq: 中断号
+* dev_id：共享中断线。 
+* regs: 指向结构的指针，该结构包含中断前处理器的寄存器和状态。
+*/                
+static irqreturn_t intr_handler(int irq, void* dev_id, struct pt_regs* regs);               
+```
+
+那么操作系统如何处理中断，即中断路由：
+
+```mermaid
+```
 
 ## 1.2 操作系统
 
